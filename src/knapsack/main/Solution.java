@@ -2,6 +2,12 @@ package knapsack.main;
 
 import java.util.ArrayList;
 
+/**
+ * Generic solution for Knapsack problem
+ * 
+ * @author ckubudi
+ *
+ */
 public class Solution {
 	private ArrayList<Item> subset;
 	private double totalValue;
