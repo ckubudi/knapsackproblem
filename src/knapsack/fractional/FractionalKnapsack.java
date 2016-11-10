@@ -20,7 +20,7 @@ public class FractionalKnapsack {
 	 * @param capacity
 	 * @return
 	 */
-	public static FractionalSolution getMaxSubset (ArrayList<Item> items, double capacity ){
+	public static FractionalSolution getMaxSubset (ArrayList<Item> items, int capacity ){
 		ArrayList<Item> subset = new ArrayList<Item>();
 		FractionalSolution solution = new FractionalSolution();
 		double totalValue = 0;
@@ -44,6 +44,7 @@ public class FractionalKnapsack {
 			} else { //this is the last item
 				solution.setLastItemFraction(capacity / item.getWeigth());
 				totalValue += item.getValue() * solution.getLastItemFraction();
+				solution.setTotalValue(totalValue);
 				break;
 			}
 		}

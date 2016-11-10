@@ -7,29 +7,33 @@ package knapsack.main;
  *
  */
 public class Item {
-	private double weigth;
-	private double value;
+	private int weigth;
+	private int value;
 	private double ratio;
 	
-	public Item (double weigth, double value){
+	public Item (int weigth, int value){
 		this.weigth=weigth;
 		this.value=value;
-		ratio=value/weigth;
+		if ( weigth != 0 ){
+			ratio=value/weigth;
+		} else {
+			ratio = Integer.MAX_VALUE;
+		}
 	}
 
-	public double getWeigth() {
+	public int getWeigth() {
 		return weigth;
 	}
 
-	public void setWeigth(double weigth) {
+	public void setWeigth(int weigth) {
 		this.weigth = weigth;
 	}
 
-	public double getValue() {
+	public int getValue() {
 		return value;
 	}
 
-	public void setValue(double value) {
+	public void setValue(int value) {
 		this.value = value;
 	}
 	
