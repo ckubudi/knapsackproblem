@@ -7,11 +7,13 @@ package knapsack.main;
  *
  */
 public class Item {
+	private int id;
 	private int weigth;
 	private int value;
 	private double ratio;
 	
-	public Item (int weigth, int value){
+	public Item (int id, int value, int weigth){
+		this.id=id;
 		this.weigth=weigth;
 		this.value=value;
 		if ( weigth != 0 ){
@@ -19,6 +21,18 @@ public class Item {
 		} else {
 			ratio = Integer.MAX_VALUE;
 		}
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setRatio(double ratio) {
+		this.ratio = ratio;
 	}
 
 	public int getWeigth() {
