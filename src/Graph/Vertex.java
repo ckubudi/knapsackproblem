@@ -20,7 +20,7 @@ public class Vertex {
             adj.add(e);
         }
         
-        public List<Edge> getAdj (){
+        public ArrayList<Edge> getAdj (){
         	return adj;
         }
         

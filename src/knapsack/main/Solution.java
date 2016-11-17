@@ -14,6 +14,10 @@ public class Solution {
 	protected double totalValue;
 	protected double totalWeigth;
 	
+	public Solution() {
+		subset = new ArrayList<Item>();
+	}
+	
 	public ArrayList<Item> getSubset() {
 		return subset;
 	}
@@ -55,6 +59,14 @@ public class Solution {
 		for(Item item : subset){
 			totalValue += item.getValue();
 			totalWeigth += item.getWeigth();
+		}
+	}
+	
+	public void appendItems ( ArrayList<Item> extraItems) {
+		if (extraItems != null){
+			for  ( Item item : extraItems){
+				subset.add(item);
+			}
 		}
 	}
 }

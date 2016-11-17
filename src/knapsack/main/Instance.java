@@ -59,6 +59,14 @@ public class Instance {
 		this.capacity = capacity;
 	}
 	
+	public Graph getConstraints() {
+		return constraints;
+	}
+
+	public void setConstraints(Graph constraints) {
+		this.constraints = constraints;
+	}
+
 	public String toString() {
 		StringBuffer buffer = new StringBuffer();
 		
