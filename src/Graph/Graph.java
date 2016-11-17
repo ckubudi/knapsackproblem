@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.ArrayList;
 
 /**
- * Adjacency list graph implementation
+ * Adjacency list undirected graph implementation
  * 
  * @author ckubudi
  *
@@ -36,7 +36,10 @@ public class Graph {
 		Edge e = new Edge(origem, destino);
 		origem.addAdj(e);
 		edges.add(e);
-		numberEdges++ ;
+		e = new Edge(destino,origem);
+		destino.addAdj(e);
+		edges.add(e);
+		numberEdges+=2 ;
 		return e;
 	}
 	
@@ -49,6 +52,17 @@ public class Graph {
 	}
 
 	public Vertex getVertex(int id) {
-		return vertices.get(id);
+		return vertices.get(id-1);
 	}
+	
+	/**
+	 * Sorts all the adjacency lists by id of destiny so its easier to search for a vertex
+	 * 
+	 */
+	public void sortAdjacencyLists(){
+		for(Vertex vertex : vertices){
+			vertex.sortAdjById();
+		}
+	}
+	
 }

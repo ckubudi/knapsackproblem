@@ -24,6 +24,7 @@ public class FractionalKnapsack {
 		ArrayList<Item> subset = new ArrayList<Item>();
 		FractionalSolution solution = new FractionalSolution();
 		double totalValue = 0;
+		double totalWeigth = 0;
 		
 		solution.setSubset(subset);
 		solution.setLastItemFraction(1.0);
@@ -33,22 +34,24 @@ public class FractionalKnapsack {
 		}
 		
 		//sorts the items based on their ratio (descending order)
-		Collections.sort(items, new FractionalComparator());;
+		Collections.sort(items, new FractionalComparator());
 		
 		///puts the max ratio items until reaches full capacity
 		for (Item item : items ){
 			subset.add(item);
 			if ( capacity > item.getWeigth()){ //if there is room for another item besides the current
 				totalValue += item.getValue();
+				totalWeigth += item.getWeigth();
 				capacity -= item.getWeigth();
 			} else { //this is the last item
-				solution.setLastItemFraction(capacity / item.getWeigth());
+				solution.setLastItemFraction(capacity * 1.0 / item.getWeigth());
 				totalValue += item.getValue() * solution.getLastItemFraction();
+				totalWeigth += item.getWeigth() * solution.getLastItemFraction();
 				solution.setTotalValue(totalValue);
+				solution.setTotalWeigth(totalWeigth);
 				break;
 			}
 		}
 		return solution;
 	}
-	
 }

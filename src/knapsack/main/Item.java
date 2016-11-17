@@ -17,9 +17,9 @@ public class Item {
 		this.weigth=weigth;
 		this.value=value;
 		if ( weigth != 0 ){
-			ratio=value/weigth;
+			ratio=value * 1.0/weigth;
 		} else {
-			ratio = Integer.MAX_VALUE;
+			ratio = Double.MAX_VALUE;
 		}
 	}
 

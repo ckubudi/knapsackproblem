@@ -47,16 +47,20 @@ public class IntegerKnapsack {
 			}
 		}
 		
+
+		solution.setTotalValue(results[items.size()][capacity]);
+		
 		//check taken items for optimal solution
+		double totalWeigth = 0;
 		for(int i = items.size() ; i > 0 ; i--){
 			if ( itemTaken[i][capacity] ){
 				subset.add(items.get(i-1));
+				totalWeigth += items.get(i-1).getWeigth();
 				capacity -= items.get(i-1).getWeigth();
 			}
 		}
-		
+		solution.setTotalWeigth(totalWeigth);
 		solution.setSubset(subset);
-		solution.setTotalValue(results[items.size()][capacity]);
 		return solution;
 	}
 }
