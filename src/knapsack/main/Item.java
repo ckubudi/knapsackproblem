@@ -11,11 +11,13 @@ public class Item {
 	private int weigth;
 	private int value;
 	private double ratio;
+	private int numberOfContraints;
 	
 	public Item (int id, int value, int weigth){
 		this.id=id;
 		this.weigth=weigth;
 		this.value=value;
+		this.numberOfContraints=numberOfContraints;
 		if ( weigth != 0 ){
 			ratio=value * 1.0/weigth;
 		} else {
@@ -53,5 +55,13 @@ public class Item {
 	
 	public Double getRatio() {
 		return ratio;
+	}
+
+	public int getNumberOfContraints() {
+		return numberOfContraints;
+	}
+
+	public void setNumberOfContraints(int numberOfContraints) {
+		this.numberOfContraints = numberOfContraints;
 	}
 }

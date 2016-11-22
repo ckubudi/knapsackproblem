@@ -2,6 +2,7 @@ package knapsack.constrainedinteger;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 import Graph.Edge;
 import Graph.Graph;
@@ -12,13 +13,13 @@ import knapsack.main.Solution;
 
 public class ConstrainedIntegerKnapsack {
 	
-	public static Solution getMaxSubset (Instance instance, int bruteForceSize){
+	public static Solution getMaxSubset (Instance instance, int bruteForceSize, Comparator<Item> comparator){
 		ArrayList<Item> subset = new ArrayList<Item>();
 		Solution solution = new Solution();
 		boolean isFiltered[] = new boolean[instance.getItems().size()];
 		
 		//Collections.sort(instance.getItems(), new FractionalComparator()); 
-		Collections.sort(instance.getItems(), new ValueComparator()); 
+		Collections.sort(instance.getItems(), comparator); 
 		
 		
 		try{
@@ -61,6 +62,7 @@ public class ConstrainedIntegerKnapsack {
 				ArrayList<Edge> edges = instance.getConstraints().getVertex(item.getId()).getAdj();
 				for(Edge edge : edges){
 					isFiltered[edge.getDestino().getId()-1] = true;
+					
 				}
 			}
 		}

@@ -43,7 +43,16 @@ public class Instance {
 			e.printStackTrace();
 		}
 		
+		setNumberOfConstraints();
+		
 		constraints.sortAdjacencyLists();
+	}
+	
+	public void setNumberOfConstraints(){
+		for( Item item : items ){
+			int numEdges =  constraints.getVertex(item.getId()).getAdj().size();
+			item.setNumberOfContraints(numEdges);
+		}
 	}
 
 	public ArrayList<Item> getItems() {
