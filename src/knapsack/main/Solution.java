@@ -47,7 +47,8 @@ public class Solution {
 		buffer.append(System.lineSeparator());
 		
 		for ( Item item : subset) {
-			buffer.append(item.getId()+" "+item.getWeigth()+" "+item.getValue()+" 1.00");
+			//buffer.append(item.getId()+" "+item.getWeigth()+" "+item.getValue()+" 1.00");
+			buffer.append(item.getId()+" 1.00");
 			buffer.append(System.lineSeparator());
 		}
 		
