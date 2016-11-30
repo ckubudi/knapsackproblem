@@ -14,38 +14,44 @@ public class Instance {
 	private int capacity;
 	private Graph constraints;
 	
-	public Instance(String filePath) {
-		loadFromFile(filePath);
+	public Instance(String filePath, boolean loadGraph) {
+		loadFromFile(filePath, loadGraph);
 	}
 	
-	private void loadFromFile(String filePath) {
+	private void loadFromFile(String filePath, boolean loadGraph) {
 		try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
 		    String line = br.readLine() ;
 		    String[] lineArr = line.split(" ");
 		    int numItems=Integer.parseInt(lineArr[0]);
 		    this.capacity = Integer.parseInt(lineArr[1]);
 		    this.items = new ArrayList<>(numItems);
-		    this.constraints = new Graph(numItems);
-		    for ( int i = 1; i <= numItems ; i++){
-		    	constraints.addVertex(i);
+		    if (loadGraph){
+			    this.constraints = new Graph(numItems);
+			    for ( int i = 1; i <= numItems ; i++){
+			    	constraints.addVertex(i);
+			    }
 		    }
 		    
 		    while ((line = br.readLine()) != null) {
 		    	lineArr = line.split(" ");
-		    	int currId = Integer.parseInt(lineArr[0]);
-		    	Item item = new Item(currId ,Integer.parseInt(lineArr[1]),Integer.parseInt(lineArr[2]));
-		    	for ( int indexIt = 3 ; indexIt < lineArr.length ; indexIt++){
-		    		constraints.addEdge( constraints.getVertex(currId) , constraints.getVertex(Integer.parseInt(lineArr[indexIt])));
+		    	if ( lineArr.length >= 3){
+			    	int currId = Integer.parseInt(lineArr[0]);
+			    	Item item = new Item(currId ,Integer.parseInt(lineArr[1]),Integer.parseInt(lineArr[2]));
+			    	if (loadGraph){
+				    	for ( int indexIt = 3 ; indexIt < lineArr.length ; indexIt++){
+				    		constraints.addEdge( constraints.getVertex(currId) , constraints.getVertex(Integer.parseInt(lineArr[indexIt])));
+				    	}
+			    	}
+			    	items.add(item);
 		    	}
-		    	items.add(item);
 		    }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		setNumberOfConstraints();
-		
-		constraints.sortAdjacencyLists();
+		if (loadGraph){
+			setNumberOfConstraints();
+			constraints.sortAdjacencyLists();
+		}
 	}
 	
 	public void setNumberOfConstraints(){
@@ -97,16 +103,6 @@ public class Instance {
 		
 		
 		return buffer.toString();
-	}
-	
-	public class PrintComparator implements Comparator<Item>{
-
-		@Override
-		public int compare(Item o1, Item o2) {
-			Integer i1 = o1.getId();
-			Integer i2 = o2.getId();
-			return i1.compareTo(i2);
-		}
 	}
 	
 	public boolean isConstrained (Item i1, Item i2){

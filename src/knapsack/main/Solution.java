@@ -2,6 +2,7 @@ package knapsack.main;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Generic solution for Knapsack problem
@@ -36,6 +37,10 @@ public class Solution {
 	}
 	public void setTotalWeigth(double totalWeigth) {
 		this.totalWeigth = totalWeigth;
+	}
+	
+	public void sortItems(){
+		Collections.sort(subset, new PrintComparator());
 	}
 	
 	public String toString (){

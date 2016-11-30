@@ -11,6 +11,7 @@ import knapsack.main.Solution;
  */
 public class FractionalSolution extends Solution{
 	private double lastItemFraction;
+	private int lastItemId;
 	
 	public double getLastItemFraction() {
 		return lastItemFraction;
@@ -27,7 +28,7 @@ public class FractionalSolution extends Solution{
 		
 		for ( int i = 0 ; i < subset.size() ; i++){
 			Item item = subset.get(i);
-			if ( i == subset.size() - 1){
+			if ( item.getId() == lastItemId){
 				buffer.append(item.getId()+" "+ lastItemFraction);
 			} else {
 				buffer.append(item.getId()+" 1.00");
@@ -36,5 +37,8 @@ public class FractionalSolution extends Solution{
 		}
 		
 		return buffer.toString();
+	}
+	public void setLastItemId(int id) {
+		lastItemId=id;
 	}
 }

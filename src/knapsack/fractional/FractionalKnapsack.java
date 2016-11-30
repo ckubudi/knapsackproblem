@@ -45,6 +45,7 @@ public class FractionalKnapsack {
 				capacity -= item.getWeigth();
 			} else { //this is the last item
 				solution.setLastItemFraction(capacity * 1.0 / item.getWeigth());
+				solution.setLastItemId(item.getId());
 				totalValue += item.getValue() * solution.getLastItemFraction();
 				totalWeigth += item.getWeigth() * solution.getLastItemFraction();
 				solution.setTotalValue(totalValue);

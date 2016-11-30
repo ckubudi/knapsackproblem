@@ -12,25 +12,28 @@ import knapsack.integer.IntegerKnapsack;
 
 public class Main {
 	private static Comparator[] COMPARATORS = {new FractionalComparator(), new ValueComparator(), new ConstraintsComparator()} ;
-	private static int[] BRUTE_FORCE_SIZES = {1, 5, 10, 15, 20};		
+	private static int[] BRUTE_FORCE_SIZES = {1};		
 
 	
 	public static void main(String[] args) {
 		String filePath = args[0];
 		String problem = args[1];
 		
-		Instance instance = new Instance(filePath);
+		Instance instance = null;
 		Solution solution =null;
 
 		switch (problem){
 		
 		case "1":
+			instance = new Instance(filePath, false);
 			solution = FractionalKnapsack.getMaxSubset(instance.getItems(), instance.getCapacity()); 
 			break;
 		case "2":
+			instance = new Instance(filePath, false);
 			solution = IntegerKnapsack.getMaxSubset(instance.getItems(), instance.getCapacity());
 			break;
 		case "3":
+			instance = new Instance(filePath, true);
 			int bestI = 1;
 			String bestComparator = "None";
 			for (Comparator comparator : COMPARATORS){
@@ -43,12 +46,13 @@ public class Main {
 					}
 				}
 			}
-			//System.out.println("Best Solution found with "+bestComparator+" using brute force of size "+bestI);
+			System.out.println("Best Solution found with "+bestComparator+" using brute force of size "+bestI);
 			break;
 		default:
 			System.out.println("Type of problem not recognized");
 		}
 		
+		solution.sortItems();
 		System.out.println(solution);
 	}
 }
