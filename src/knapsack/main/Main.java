@@ -12,7 +12,7 @@ import knapsack.integer.IntegerKnapsack;
 
 public class Main {
 	private static Comparator[] COMPARATORS = {new FractionalComparator(), new ValueComparator(), new ConstraintsComparator()} ;
-	private static int[] BRUTE_FORCE_SIZES = {1};		
+	private static int[] BRUTE_FORCE_SIZES = {1, 10, 20};		
 
 	
 	public static void main(String[] args) {
@@ -46,7 +46,7 @@ public class Main {
 					}
 				}
 			}
-			System.out.println("Best Solution found with "+bestComparator+" using brute force of size "+bestI);
+			//System.out.println("Best Solution found with "+bestComparator+" using brute force of size "+bestI);
 			break;
 		default:
 			System.out.println("Type of problem not recognized");
