@@ -1,2 +1,2 @@
 # knapsackproblem
-Knapsack problem solutions designed for the Algorhitms class INF2926
+Knapsack problem solutions designed for the Algorithms class INF2926
